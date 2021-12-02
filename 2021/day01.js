@@ -1,19 +1,18 @@
-function fileread(filename)
-{            
-   var contents= fs.readFileSync(filename);
-   return contents;
+function fileread(filename){            
+  let fs = require("fs");  
+  let contents= fs.readFileSync(filename,);
+  return contents;
 }        
-
-var fs =require("fs");      
-var data= fileread("day01.txt");
-var input = data.toString().split("\n").map(function (x) { 
-    return parseInt(x, 10); 
-  });
+    
+let input = fileread("day01ex.txt")
+    .toString()
+    .split("\n")
+    .map((x) => parseInt(x, 10));
 
 function solve1(input){
-    var output = 0
-    var preceding = input[0]
-    for(var i=1; i<input.length; i++){
+    let output = 0
+    let preceding = input[0]
+    for(let i=1; i<input.length; i++){
         if(preceding < input[i]){
             output +=1;
         }
@@ -22,19 +21,20 @@ function solve1(input){
     return output;
 }
 
-function solve2(input){
-    var output = 0
-    var preceding = input[0] + input[1] + input[2]
-    for(var i=1; i< input.length - 2; i++){
-        var actual = input[i] + input[i + 1] + input[i + 2]
-        if(preceding < actual){
-            output +=1;
-        }
-        preceding = actual;
-    }
-    return output;
-}
-
 console.log(solve1(input));
-console.log(solve2(input));
+console.log(solve1(input.slice(0,-2).map(function(value, index, elements) {
+    return input[index] + input[index + 1] + input[index + 2];
+})))
+
+// check zip function + pairs.filter
+
+// let data = require("./data.json");
+
+// const part1 = data.filter((datum, i, arr) => arr[i] > arr[i - 1]).length;
+
+// const part2 = data.filter(
+//   (_, i, arr) =>
+//     arr.slice(i + 1, i + 4).reduce((x, y) => x + y, 0) >
+//     arr.slice(i, i + 3).reduce((x, y) => x + y, 0)
+// ).length;
 
