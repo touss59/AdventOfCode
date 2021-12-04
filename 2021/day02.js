@@ -10,47 +10,55 @@ const input = fileread("day02.txt")
     .split("\n")
     .map((x) => x.split(" "));
 
-let horizontal = 0;
-let depth = 0;
 
-for(let [t,x] of input) {
-    let xParse = parseInt(x, 10);
-    switch(t) {
-        case 'forward':
-            horizontal += xParse;
-            break;
-        case 'down':
-            depth += xParse;
-            break;
-        case 'up':
-            depth -= xParse;
-            break;
+function solve1(input){
+    let horizontal = 0;
+    let depth = 0;
+    
+    for(let [t,x] of input) {
+        let xParse = parseInt(x, 10);
+        switch(t) {
+            case 'forward':
+                horizontal += xParse;
+                break;
+            case 'down':
+                depth += xParse;
+                break;
+            case 'up':
+                depth -= xParse;
+                break;
+        }
     }
+    return horizontal*depth;
 }
 
-console.log(horizontal*depth)
+function solve2(input) {
+    let horizontal = 0;
+    let depth = 0;
+    let aim = 0;
 
-let horizontal2 = 0;
-let depth2 = 0;
-let aim = 0;
-
-for(let [t,x] of input) {
-    let xParse = parseInt(x, 10);
-    switch(t) {
-        case 'forward':
-            horizontal2 += xParse;
-            depth2+=(aim*xParse);
-            break;
-        case 'down':
-            aim += xParse;
-            break;
-        case 'up':
-            aim -= xParse;
-            break;
+    for(let [t,x] of input) {
+        let xParse = parseInt(x, 10);
+        switch(t) {
+            case 'forward':
+                horizontal += xParse;
+                depth+=(aim*xParse);
+                break;
+            case 'down':
+                aim += xParse;
+                break;
+            case 'up':
+                aim -= xParse;
+                break;
+        }
     }
+    return horizontal*depth;
 }
 
-console.log(horizontal2*depth2)
+
+
+console.log(solve1(input));
+console.log(solve2(input));
 
 
 
