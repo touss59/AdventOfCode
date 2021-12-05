@@ -10,20 +10,20 @@ const input = fileread("day03.txt")
     .split("\n")
     .map((x) => x.split("").map((y) => parseInt(y, 10)));
 
-function getMostFrequent(arr) {
-    const hashmap = arr.reduce( (acc, val) => {
-        acc[val] = (acc[val] || 0 ) + 1;
-        return acc;
-    },{})
-    return Object.keys(hashmap).reduce((a, b) => hashmap[a] == hashmap[b] ? 1 : hashmap[a] > hashmap[b] ? a : b);
+function getNumberOfOccurences(arr,search) {
+    return arr.reduce((n, val) =>n + (val === search), 0);
 }
 
-function getLeastFrequent(arr) {
-    const hashmap = arr.reduce( (acc, val) => {
-        acc[val] = (acc[val] || 0 ) + 1;
-        return acc;
-    },{})
-    return Object.keys(hashmap).reduce((a, b) => hashmap[a] == hashmap[b] ? 0 : hashmap[a] < hashmap[b] ? a : b);
+function getMostFrequentBit(arr) {
+    let numOfOne = getNumberOfOccurences(arr,1);
+    let numOfZero = getNumberOfOccurences(arr,0); 
+    return numOfOne >=  numOfZero ? 1 : 0;
+}
+
+function getLeastFrequentBit(arr) {
+    let numOfOne = getNumberOfOccurences(arr,1);
+    let numOfZero = getNumberOfOccurences(arr,0); 
+    return ((numOfZero <= numOfOne && numOfZero != 0) || numOfOne==0) ? 0 : 1;
 }
 
 function getNumberFromBitsArray(arr) {
@@ -47,7 +47,7 @@ function solve1(arr){
         for(let y= 0 ; y < arr.length ; y++){
             list.push(arr[y][x]);
         }
-        result.push(getMostFrequent(list));
+        result.push(getMostFrequentBit(list));
     }
     
     return getNumberFromBitsArray(toggleBits(result))*getNumberFromBitsArray(result);
@@ -63,7 +63,7 @@ function solve2(arr){
         for(let y= 0 ; y < input.length ; y++){
             list.push(input[y][x]);
         }
-        let mostFrequent = getMostFrequent(list);
+        let mostFrequent = getMostFrequentBit(list);
         input = input.filter(number => number[x] == mostFrequent);
     }
 
@@ -72,7 +72,7 @@ function solve2(arr){
         for(let y= 0 ; y < input2.length ; y++){
             list.push(input2[y][x]);
         }
-        let leastFrequent = getLeastFrequent(list);
+        let leastFrequent = getLeastFrequentBit(list);
         input2 = input2.filter(number => number[x] == leastFrequent);
     }
 
@@ -82,3 +82,14 @@ function solve2(arr){
 
 console.log(solve1(input))
 console.log(solve2(input))
+
+
+// deep copy => JSON.parse(JSON.stringify(nestedArray)); 
+
+// function getMostFrequent(arr) {
+//     const hashmap = arr.reduce( (acc, val) => {
+//         acc[val] = (acc[val] || 0 ) + 1;
+//         return acc;
+//     },{})
+//     return Object.keys(hashmap).reduce((a, b) => hashmap[a] > hashmap[b] ? a : b);
+// }
