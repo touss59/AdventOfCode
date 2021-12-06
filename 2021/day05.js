@@ -11,7 +11,7 @@ const input = fileread("day05.txt")
     .map((line) => line
         .split(" -> ")
         .map((part => part
-            .split(",").map((y) => parseInt(y, 10)))));
+            .split(",").map((y) => parseInt(y)))));
 
 function solve(input){
 
