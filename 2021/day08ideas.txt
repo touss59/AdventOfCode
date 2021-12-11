@@ -1,0 +1,22 @@
+0 => [1,1,1,1,1,1,0]
+
+1 => [0,1,1,0,0,0,0]	=> reconnait tout de suite + info 2 et 3
+
+2 => [1,1,0,1,1,0,1]
+
+3 => [1,1,1,1,0,0,1]
+
+4 => [0,1,1,0,0,1,1]	=> reconnait tout de suite 
+
+5 => [1,0,1,1,0,1,1]
+
+6 => [1,0,1,1,1,1,1]	=> info sur 2eme
+
+7 => [1,1,1,0,0,0,0]	=> reconnait tout de suite 
+
+8 => [1,1,1,1,1,1,1]	=> pas d'info mais on le reconnait tout de suite
+
+9 => [1,1,1,1,0,1,1]	=> infos sur 5eme
+
+the goal is to map a letter to a position and check if it match a pattern 
+
