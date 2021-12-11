@@ -46,7 +46,7 @@ function solveRow(row){
   
         case 4:
           dic[row[i].split('').sort().join('')] = '4';
-          bd = row[i].split('').filter((symbole)=> !cf.includes(symbole));
+          bd = row[i].split('').filter((car)=> !cf.includes(car));
           break;
   
         case 7:
